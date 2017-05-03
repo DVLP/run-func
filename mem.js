@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/bin/env node --max-old-space-size=4096
 
 const params = process.argv.slice(4);
 const userModule = require('../../' + process.argv[2]);
