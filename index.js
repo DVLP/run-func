@@ -1,5 +1,8 @@
 #! /usr/bin/env node
 const path = require('path');
+
+;(async function main() {
+
 const params = process.argv.slice(4);
 
 if (!process.argv[2]) {
@@ -20,4 +23,7 @@ if (!userModule) {
 if (!userModule[process.argv[3]]) {
   throw new Error(`Function ${process.argv[3]} is not present or exported from module ${userModule}`);
 }
-userModule[process.argv[3]](...params);
+
+await userModule[process.argv[3]](...params)
+
+})().catch(e => { throw e; });
