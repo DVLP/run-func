@@ -12,12 +12,22 @@ if (!process.argv[3]) {
   process.exit();
 }
 
-const userModule = require(path.join(process.cwd(), process.argv[2]));
+const isEs6 = path.extname(process.argv[2]) === '.mjs';
+if (isEs6) {
+  import('file://' + path.resolve(path.join(process.cwd(), process.argv[2]))).then((userModule) => {
+    executeInModule(userModule, process.argv[3], params);
+  });
+} else {
+  const userModule = require(path.join(process.cwd(), process.argv[2]));
+  executeInModule(userModule, process.argv[3], params);
+}
 
-if (!userModule) {
-  throw new Error(`Module ${userModule} does not exists`);
+function executeInModule(userMod, fnName, fnParams) {
+  if (!userMod) {
+    throw new Error(`Module ${userMod} does not exists`);
+  }
+  if (!userMod[fnName]) {
+    throw new Error(`Function ${fnName} is not present or exported from module ${userMod}`);
+  }
+  userMod[fnName](...fnParams);
 }
-if (!userModule[process.argv[3]]) {
-  throw new Error(`Function ${process.argv[3]} is not present or exported from module ${userModule}`);
-}
-userModule[process.argv[3]](...params);
