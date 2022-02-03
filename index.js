@@ -14,7 +14,9 @@ if (!process.argv[3]) {
 
 const isEs6 = path.extname(process.argv[2]) === '.mjs';
 if (isEs6) {
-  import('file://' + path.resolve(path.join(process.cwd(), process.argv[2]))).then((userModule) => {
+  // This branch is only supported in Node versions that support native ES6 import
+  var es6Import = require('./es6import.js')
+  es6Import('file://' + path.resolve(path.join(process.cwd(), process.argv[2]))).then(userModule => {
     executeInModule(userModule, process.argv[3], params);
   });
 } else {
@@ -27,7 +29,7 @@ function executeInModule(userMod, fnName, fnParams) {
     throw new Error(`Module ${userMod} does not exists`);
   }
   if (!userMod[fnName]) {
-    throw new Error(`Function ${fnName} is not present or exported from module ${userMod}`);
+    throw new Error(`Function ${fnName} is not present or exported from module`);
   }
   userMod[fnName](...fnParams);
 }

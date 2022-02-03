@@ -4,25 +4,22 @@
     "run-func": "index.js",
     "run-func-mem": "mem.js"
   },
-  "dependencies": {},
   "description": "Run exported function from package.json scripts",
-  "devDependencies": {},
   "directories": {},
   "license": "ISC",
   "main": "index.js",
   "maintainers": [
     {
-      "name": "rockclimber",
+      "name": "DVLP",
       "email": "pawel@dvlp.co"
     }
   ],
   "name": "run-func",
-  "optionalDependencies": {},
   "readme": "README.md",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.4",
+  "version": "1.1.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/DVLP/run-func.git"
