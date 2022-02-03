@@ -4,6 +4,10 @@
     "run-func": "index.js",
     "run-func-mem": "mem.js"
   },
+  "engines": {
+    "npm": ">=6.0.0",
+    "node": ">=10.0.0"
+  },
   "description": "Run exported function from package.json scripts",
   "directories": {},
   "license": "ISC",
@@ -19,7 +23,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.1.5",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/DVLP/run-func.git"

@@ -14,9 +14,7 @@ if (!process.argv[3]) {
 
 const isEs6 = path.extname(process.argv[2]) === '.mjs';
 if (isEs6) {
-  // This branch is only supported in Node versions that support native ES6 import
-  var es6Import = require('./es6import.js')
-  es6Import('file://' + path.resolve(path.join(process.cwd(), process.argv[2]))).then(userModule => {
+  import('file://' + path.resolve(path.join(process.cwd(), process.argv[2]))).then((userModule) => {
     executeInModule(userModule, process.argv[3], params);
   });
 } else {
