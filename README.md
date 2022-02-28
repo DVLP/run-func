@@ -19,6 +19,17 @@ Run exported JavaScript functions directly from command line
   "myFunc": "run-func script.js myFunc param1 param2"
 }`
 
+### With other node modules
+
+```
+"scripts": {
+  "test": "run-func some-module myFunc \"string as parameter\""
+},
+"dependencies": {
+  "some-module": "1.0.0"
+}
+```
+
 # 4GB node flag
 
 `run-func-mem` instead of `run-func`
